@@ -1,0 +1,25 @@
+{
+  "name": "query-string-modals",
+  "version": "1.0.0",
+  "description": "A React library for controlling and managing modals using query strings.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nathancheshire/query-string-modals.git"
+  },
+  "keywords": [
+    "react",
+    "modals",
+    "query strings",
+    "ui",
+    "react components"
+  ],
+  "author": "Nathan Cheshire",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {}
+}
