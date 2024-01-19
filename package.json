@@ -1,6 +1,6 @@
 {
   "name": "query-string-modals",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A React library for controlling and managing modals using query strings.",
   "main": "index.js",
   "repository": {
@@ -28,6 +28,7 @@
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
+    "@types/react": "^18.2.48",
     "babel-loader": "^9.1.3",
     "css-loader": "^6.9.0",
     "style-loader": "^3.3.4",
