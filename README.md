@@ -74,10 +74,18 @@ function YourComponent() {
 
 ### Contributing
 
+Contributions to `query-string-modals` are most welcome! If you have suggestions or improvements, feel free to open an issue or submit a pull request. Simply ensure you follow standard typescript/javascript guides, define types, folow clean code styles, and most importantly, follow the code style present in the code base.
+
 ### License
 
 `query-string-modals` is licensed under the MIT License. See the LICENSE file for more details.
 
 ### Resources
 
+[React Router](https://reactrouter.com/en/main)
+
+Raw link: https://reactrouter.com/en/main
+
 ### Credits
+
+React Router, MUI, React, and my professional career.
