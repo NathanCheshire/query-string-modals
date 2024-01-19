@@ -15,7 +15,7 @@ interface ModalContextType {
      *
      * @param callbacks the pre/post callbacks to invoke before/after closing the modal
      */
-    closeModals: (callbacks?: ModalCallbacks) => void;
+    closeModal: (callbacks?: ModalCallbacks) => void;
     /**
      * The data/props for the current active modal if any.
      */

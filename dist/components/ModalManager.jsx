@@ -69,7 +69,7 @@ export default function ModalProvider(_a) {
      *
      * @param callbacks the pre/post callbacks to invoke before/after closing the modal
      */
-    function closeModals(callbacks) {
+    function closeModal(callbacks) {
         var _a, _b;
         (_a = callbacks === null || callbacks === void 0 ? void 0 : callbacks.preAction) === null || _a === void 0 ? void 0 : _a.call(callbacks);
         removeModalIdFromUrlParameters();
@@ -146,7 +146,7 @@ export default function ModalProvider(_a) {
             return;
         return currentModal.component;
     }
-    return (<ModalContext.Provider value={{ openModal: openModal, closeModals: closeModals, currentModalProps: currentModalProps, registerModal: registerModal }}>
+    return (<ModalContext.Provider value={{ openModal: openModal, closeModal: closeModal, currentModalProps: currentModalProps, registerModal: registerModal }}>
       {getCurrentModal()}
       {children}
     </ModalContext.Provider>);

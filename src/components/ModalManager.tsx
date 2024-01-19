@@ -22,7 +22,7 @@ interface ModalContextType {
    *
    * @param callbacks the pre/post callbacks to invoke before/after closing the modal
    */
-  closeModals: (callbacks?: ModalCallbacks) => void;
+  closeModal: (callbacks?: ModalCallbacks) => void;
 
   /**
    * The data/props for the current active modal if any.
@@ -113,7 +113,7 @@ export default function ModalProvider({
    *
    * @param callbacks the pre/post callbacks to invoke before/after closing the modal
    */
-  function closeModals(callbacks?: ModalCallbacks) {
+  function closeModal(callbacks?: ModalCallbacks) {
     callbacks?.preAction?.();
     removeModalIdFromUrlParameters();
     callbacks?.postAction?.();
@@ -199,7 +199,7 @@ export default function ModalProvider({
 
   return (
     <ModalContext.Provider
-      value={{ openModal, closeModals, currentModalProps, registerModal }}
+      value={{ openModal, closeModal, currentModalProps, registerModal }}
     >
       {getCurrentModal()}
       {children}
