@@ -3,13 +3,17 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { ManagedModal } from "./ManagedModal";
 import { ModalCallbacks } from "./ModalCallbacks";
 
+/**
+ * Type definition for the modal context.
+ * Provides functions to open and close modals, access current modal props, and register new modals.
+ */
 interface ModalContextType {
   /**
-   * Opens the modal with the provided ID if registered.
-   *
-   * @param modalId the ID of the modal to show
-   * @param callbacks the pre/post callbacks to invoke before/after opening the modal
-   * @param dataForModal the data to set for the modal to access
+   * Opens a modal with the specified ID.
+   * 
+   * @param modalId - The ID of the modal to open
+   * @param callbacks - Optional callbacks to run before and after opening the modal
+   * @param dataForModal - Optional data to pass to the modal
    */
   openModal: (
     modalId: string,
@@ -18,21 +22,21 @@ interface ModalContextType {
   ) => void;
 
   /**
-   * Closes the currently open modal if present.
-   *
-   * @param callbacks the pre/post callbacks to invoke before/after closing the modal
+   * Closes the currently open modal, if any
+   * 
+   * @param callbacks - Optional callbacks to run before and after closing the modal
    */
   closeModal: (callbacks?: ModalCallbacks) => void;
 
   /**
-   * The data/props for the current active modal if any.
+   * Contains the data/props for the currently active modal.
    */
   currentModalProps?: Record<string, any>;
 
   /**
-   * Registers the provided ManagedModal, overriding any previously managed modal with the same ID.
-   *
-   * @param modal the modal to register
+   * Registers a modal for management by the context.
+   * 
+   * @param modal - The modal to register
    */
   registerModal: (modal: ManagedModal) => void;
 }
@@ -40,13 +44,17 @@ interface ModalContextType {
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 /**
- * The modal context allowing a caller to access the following properties:
- * - the function to open a modal
- * - the function to close a modal
- * - the current props for the current modal
- * - the modal registration function
+ * Custom hook for accessing the modal context.
+ * This hook provides functions to open and close modals, as well as the ability to register new modals.
+ * It should be used within components that are children of `ModalProvider`.
  *
- * @returns this modal context
+ * @returns An object containing:
+ * - `openModal`: Function to open a modal by its ID. It can take optional callbacks and data for the modal.
+ * - `closeModal`: Function to close the currently open modal. It can take optional callbacks.
+ * - `currentModalProps`: An object containing the current active modal's props.
+ * - `registerModal`: Function to register a new modal with the context.
+ *
+ * @throws Error if used outside of a `ModalProvider` component.
  */
 export const useModal = () => {
   const context = useContext(ModalContext);
@@ -76,13 +84,13 @@ interface ModalProviderProps {
 }
 
 /**
- * A context provider providing children the ability to register modals with this manager,
- *  open them, close them, register additional modals, and access current modal state data.
- *
- * @param children the children of this provider
- * @param modals the initial modals this manager will manage
- * @param the queryStringParameter which controls which if any modal this manager is showing
- * @returns this provider
+ * Component providing the modal context to its children.
+ * Manages the registration, opening, and closing of modals based on modal IDs.
+ * 
+ * @param children - The child components that will have access to the modal context
+ * @param modals - An array of `ManagedModal` objects to be initially registered
+ * @param modalQueryStringParameter - The URL query string parameter used to control modals. Defaults to "modal"
+ * @returns A `ModalContext.Provider` wrapping the children
  */
 export default function ModalProvider({
   children,
