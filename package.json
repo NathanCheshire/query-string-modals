@@ -1,8 +1,9 @@
 {
   "name": "query-string-modals",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "description": "A React library for controlling and managing modals using query strings.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/nathancheshire/query-string-modals.git"
@@ -14,7 +15,6 @@
     "ui",
     "react components"
   ],
-  "types": "dist/index.d.ts",
   "author": "Nathan Cheshire",
   "license": "MIT",
   "scripts": {

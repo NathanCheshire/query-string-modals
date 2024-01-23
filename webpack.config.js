@@ -1,31 +1,33 @@
-import { resolve as _resolve } from "path";
+// webpack.config.js
 
-export const entry = "./src/index.js";
-export const output = {
-  path: _resolve(__dirname, "dist"),
-  filename: "index.ts",
-  libraryTarget: "umd",
-  globalObject: "this",
-};
-export const module = {
-  rules: [
-    {
-      test: /\.(ts|tsx)$/,
-      exclude: /node_modules/,
-      use: {
-        loader: "babel-loader",
+const path = require("path");
+
+module.exports = {
+  entry: "./src/index.ts",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "index.js", // Compiled JavaScript file
+    libraryTarget: "umd",
+    globalObject: "this",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
       },
-    },
-    {
-      test: /\.css$/,
-      use: ["style-loader", "css-loader"],
-    },
-  ],
-};
-export const resolve = {
-  extensions: [".js", ".jsx", ".ts", ".tsx"],
-};
-export const externals = {
-  react: "react",
-  "react-dom": "react-dom",
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+  },
+  externals: {
+    react: "react",
+    "react-dom": "react-dom",
+  },
 };
