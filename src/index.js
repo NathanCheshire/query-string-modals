@@ -1,3 +1,3 @@
 export * from "./components/ManagedModal";
 export * from "./components/ModalCallbacks";
-export * from "./components/ModalManager";
+export { default as ModalProvider } from "./components/ModalManager";
