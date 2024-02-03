@@ -10,7 +10,7 @@ import { ModalCallbacks } from "./ModalCallbacks";
 interface ModalContextType {
   /**
    * Opens a modal with the specified ID.
-   * 
+   *
    * @param modalId - The ID of the modal to open
    * @param callbacks - Optional callbacks to run before and after opening the modal
    * @param dataForModal - Optional data to pass to the modal
@@ -23,7 +23,7 @@ interface ModalContextType {
 
   /**
    * Closes the currently open modal, if any
-   * 
+   *
    * @param callbacks - Optional callbacks to run before and after closing the modal
    */
   closeModal: (callbacks?: ModalCallbacks) => void;
@@ -35,7 +35,7 @@ interface ModalContextType {
 
   /**
    * Registers a modal for management by the context.
-   * 
+   *
    * @param modal - The modal to register
    */
   registerModal: (modal: ManagedModal) => void;
@@ -81,21 +81,28 @@ interface ModalProviderProps {
   children: React.ReactNode;
   modals: ManagedModal[];
   modalQueryStringParameter?: string;
+  modalIdNotFoundFallback?: React.ReactNode;
+  removeModalIdIfNotFound?: boolean;
 }
 
 /**
  * Component providing the modal context to its children.
  * Manages the registration, opening, and closing of modals based on modal IDs.
- * 
+ *
  * @param children - The child components that will have access to the modal context
  * @param modals - An array of `ManagedModal` objects to be initially registered
  * @param modalQueryStringParameter - The URL query string parameter used to control modals. Defaults to "modal"
+ * @param modalIdNotFoundFallback - The fallback modal to show if no modal with the current ID is found
+ * @param removeModalIdFromUrlParameters - Whether to remove the invalid modal ID if an invalid modal
+ *  ID is found in the URL. Note this trumps the fallback element if provided
  * @returns A `ModalContext.Provider` wrapping the children
  */
 export default function ModalProvider({
   children,
   modals,
   modalQueryStringParameter = "modal",
+  modalIdNotFoundFallback = <></>,
+  removeModalIdIfNotFound = true,
 }: ModalProviderProps) {
   const [currentModalId, setCurrentModalId] = useState<string | undefined>(
     undefined
@@ -197,7 +204,18 @@ export default function ModalProvider({
 
   function getCurrentModal() {
     if (currentModalId === undefined) return <></>;
-    const currentModal = registeredModals.get(currentModalId)!;
+    if (!registeredModals.has(currentModalId)) {
+      if (removeModalIdIfNotFound) {
+        setModalIdUrlParameter('')
+        return;
+      } else {
+        return modalIdNotFoundFallback;
+      }
+    }
+    const currentModal = registeredModals.get(currentModalId);
+    if (currentModal === undefined) {
+      return modalIdNotFoundFallback;
+    }
 
     if (shouldIgnoreShowingCurrentModal()) return;
     if (onlyShowForUrlPatternPresentAndFails()) return;
