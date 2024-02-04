@@ -22,8 +22,11 @@ const modals: ManagedModal[] = [
   {
     modalId: "exampleModal",
     component: <YourModalComponent />,
+    // Optional parameters
     ignoreUrlPattern: /pattern-to-ignore/,
     onlyShowForUrlPattern: /pattern-to-show/,
+    modalIdNotFoundFallback: <FallbackModalComponent>,
+    removeModalIdIfNotFound: false,
   },
   // ... other modals
 ];

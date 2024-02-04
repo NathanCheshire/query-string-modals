@@ -206,7 +206,7 @@ export default function ModalProvider({
     if (currentModalId === undefined) return <></>;
     if (!registeredModals.has(currentModalId)) {
       if (removeModalIdIfNotFound) {
-        setModalIdUrlParameter('')
+        removeModalIdFromUrlParameters();
         return;
       } else {
         return modalIdNotFoundFallback;
