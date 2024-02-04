@@ -22,7 +22,6 @@ const modals: ManagedModal[] = [
   {
     modalId: "exampleModal",
     component: <YourModalComponent />,
-    // Optional URL patterns
     ignoreUrlPattern: /pattern-to-ignore/,
     onlyShowForUrlPattern: /pattern-to-show/,
   },
