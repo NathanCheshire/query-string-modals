@@ -188,7 +188,11 @@ export default function ModalProvider({
     const shouldIgnorePattern = currentModal?.ignoreUrlPattern;
     // No pattern so so proceed to next checks from caller
     if (!shouldIgnorePattern) return false;
-    return shouldIgnorePattern.test(getUrlForComparisonAgainstRegex());
+    const failedIgnorePatternTest = shouldIgnorePattern.test(
+      getUrlForComparisonAgainstRegex()
+    );
+    if (failedIgnorePatternTest) removeModalIdFromUrlParameters();
+    return failedIgnorePatternTest;
   }
 
   function onlyShowForUrlPatternPresentAndFails(): boolean {

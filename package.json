@@ -1,6 +1,6 @@
 {
   "name": "query-string-modals",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "description": "A React library for controlling and managing modals using query strings.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
