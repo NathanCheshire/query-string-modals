@@ -25,8 +25,6 @@ const modals: ManagedModal[] = [
     // Optional parameters
     ignoreUrlPattern: /pattern-to-ignore/,
     onlyShowForUrlPattern: /pattern-to-show/,
-    modalIdNotFoundFallback: <FallbackModalComponent>,
-    removeModalIdIfNotFound: false,
   },
   // ... other modals
 ];
@@ -34,7 +32,7 @@ const modals: ManagedModal[] = [
 function App() {
   return (
     <Router>
-      <ModalProvider modals={modals}>
+      <ModalProvider modals={modals} modalIdNotFoundFallback={<MyCustomModalFallback />} removeModalIdIfNotFound={false} >
         {/* Your routes and components */}
       </ModalProvider>
     </Router>
